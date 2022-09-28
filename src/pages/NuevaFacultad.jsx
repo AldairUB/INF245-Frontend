@@ -19,7 +19,7 @@ const NuevaFacultad = () => {
       <div className="max-w-screen-lg p-8 mx-auto flex flex-col justify-start w-full h-full">
         <div className="pb-5 grid grid-cols-1">
           <p className="  text-3xl font-semibold inline border-b-4  text-blue-900 flex-auto border-blue-900">
-            Gestión de Facultades > Nueva Facultad
+            Gestión de Facultades {">"} Nueva Facultad
           </p>
         </div>
 
