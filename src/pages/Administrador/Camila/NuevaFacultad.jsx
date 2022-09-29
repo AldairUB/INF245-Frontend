@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
 
-//GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+//GAAAAAAAAA1 CAMBIO
 const NuevaFacultad = () => {
   const [datos, getDatos] = useState({ nombre: "" });
 

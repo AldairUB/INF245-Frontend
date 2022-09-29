@@ -21,7 +21,7 @@ const GestionDeSemestres = () => {
   const [users, setUsers] = useState([]);
   //2.- Funcion para mostrar los datos con fetch
   const URL = "http://localhost:8081/api/v1/semestre"; //sacar del postman
-
+  //GA DE CAMBIO
   //obtencion de data ******IMPORTANTE********
   const showData = async () => {
     const response = await fetch(URL);
