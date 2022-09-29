@@ -4,17 +4,42 @@ import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 import { Select, Option } from "@material-tailwind/react";
 import { Input } from "@material-tailwind/react";
 import { Button } from "@material-tailwind/react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import DataTable from "react-data-table-component";
 
 //GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 const NuevaFacultad = () => {
-  const rows: GridRowsProp = [
-    { id: 1, col1: "20181923", col2: "Ingeniería Informática" },
+  const [datos, getDatos] = useState({ nombre: "" });
+
+  //1.- configurar los hooks
+  const [users, setUsers] = useState([]);
+  //2.- Funcion para mostrar los datos con fetch
+  const URL = "http://localhost:8081/api/v1/especialidad"; //sacar del postman
+
+  //obtencion de data ******IMPORTANTE********
+  const showData = async () => {
+    const response = await fetch(URL);
+    const data = await response.json();
+    console.log(data);
+    setUsers(data);
+  };
+
+  useEffect(() => {
+    showData();
+  }, []);
+  //3. Configuramos las columnas para el data table
+  const columnas = [
+    {
+      name: "CÓDIGO",
+      selector: (row) => row.codigo,
+    },
+    {
+      name: "NOMBRE DE ESPECIALIDAD",
+      selector: (row) => "Ingeniería " + row.nombre,
+    },
   ];
 
-  const columns: GridColDef[] = [
-    { field: "col1", headerName: "Código", width: 500 },
-    { field: "col2", headerName: "Nombre Especialidad", width: 600 },
-  ];
   return (
     <div name="listaentregablespendientes" className="h-screen w-full bg-white">
       <div className="flex w-full h-20"></div>
@@ -60,7 +85,7 @@ const NuevaFacultad = () => {
         </div>
 
         <div className="pb-6 w-full" style={{ height: 350, width: "100%" }}>
-          <DataGrid rows={rows} columns={columns} />
+          <DataTable columns={columnas} data={users} />
         </div>
       </div>
     </div>
