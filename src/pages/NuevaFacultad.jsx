@@ -4,6 +4,8 @@ import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 import { Select, Option } from "@material-tailwind/react";
 import { Input } from "@material-tailwind/react";
 import { Button } from "@material-tailwind/react";
+
+//GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 const NuevaFacultad = () => {
   const rows: GridRowsProp = [
     { id: 1, col1: "20181923", col2: "Ingeniería Informática" },
