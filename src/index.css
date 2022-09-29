@@ -34,3 +34,8 @@
 .via-blue-pucp {
   --tw-gradient-stops: var(--tw-gradient-from), #042354, var(--tw-gradient-to, rgb(4 35 84 / 0));
 }
+
+.border-blue-pucp {
+  --tw-border-opacity: 1;
+  border-color: rgb(4 35 84 / var(--tw-border-opacity));
+}
