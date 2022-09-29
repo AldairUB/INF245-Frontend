@@ -72,7 +72,7 @@ const GestionDeEspecialidades = () => {
 
           <div className="pb-6" style={{ height: 250, width: '100%' }}>
             <Link to="/gestionentrega">
-              <DataGrid rows={rows} columns={columns} />
+              <DataGrid rows={rows} columns={columns} pagination pageSize={10} checkboxSelection={true}/>
             </Link>
           </div>
         </div>
