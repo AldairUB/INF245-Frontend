@@ -4,7 +4,7 @@ import NavHorizontalBar from "./components/NavHorizontalBar";
 import NavVerticalBar from "./components/NavVerticalBar";
 
 import Home from "./pages/Home";
-
+import Inicio from "./pages/Inicio";
 //Aldair
 import AGestionDeEspecialidades from "./pages/Administrador/Aldair/GestionDeEspecialidades"; //no va
 import AGestionDeFacultades from "./pages/Administrador/Aldair/GestionDeFacultades";
@@ -36,18 +36,13 @@ function App() {
         <NavHorizontalBar />
         <NavVerticalBar />
         <Routes>
-          <Route path="/" element={<CNuevaFacultad />}>
+          <Route path="/" element={<Inicio />}>
             {" "}
           </Route>
           <Route path="/home" element={<Home />}>
             {" "}
           </Route>
-          <Route
-            path="/listaentregablespendientes"
-            element={<ListaEntregablesPendientes />}
-          >
-            {" "}
-          </Route>
+
           <Route
             path="/pendientesporcorregir"
             element={<PendientesPorCorregir />}
@@ -55,6 +50,18 @@ function App() {
             {" "}
           </Route>
           <Route path="/gestionentrega" element={<GestionEntrega />}>
+            {" "}
+          </Route>
+
+          <Route path="/gestiondefacultades" element={<AGestionDeFacultades />}>
+            {" "}
+          </Route>
+
+          <Route path="/gestiondesemestres" element={<AGestionDeSemestres />}>
+            {" "}
+          </Route>
+
+          <Route path="/gestiondeusuarios" element={<CGestionDeUsuarios />}>
             {" "}
           </Route>
         </Routes>
