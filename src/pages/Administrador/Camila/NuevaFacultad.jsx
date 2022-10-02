@@ -1,33 +1,44 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 import { Select, Option } from "@material-tailwind/react";
 import { Input } from "@material-tailwind/react";
 import { Button } from "@material-tailwind/react";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import DataTable from "react-data-table-component";
+
+import Box from '@mui/material/Box';
+import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
+import Stack from '@mui/material/Stack';
+
 
 //GAAAAAAAAA1 CAMBIO
 const NuevaFacultad = () => {
-  const [datos, getDatos] = useState({ nombre: "" });
 
-  //1.- configurar los hooks
-  const [users, setUsers] = useState([]);
-  //2.- Funcion para mostrar los datos con fetch
-  const URL = "http://localhost:8081/api/v1/especialidad"; //sacar del postman
+  const columns: GridColDef[] = [
+    {
+      field: 'codigo',
+      headerName: 'Código de la especialidad',
+      width: 150,
+      editable: true,
+    },
+    {
+      field: 'nombre',
+      headerName: 'Nombre de la especialidad',
+      width: 540,
+      editable: true,
+    },
+  ];
+  
+  const rows = [
+    { id: 1, codigo: 'ES001', nombre: 'Ingeniería Informática' },
+    { id: 2, codigo: 'ES002', nombre: 'Ingeniería Mecatrónica'},
+  ];
 
-  //obtencion de data ******IMPORTANTE********
-  const showData = async () => {
-    const response = await fetch(URL);
-    const data = await response.json();
-    console.log(data);
-    setUsers(data);
-  };
-
-  useEffect(() => {
-    showData();
-  }, []);
   //3. Configuramos las columnas para el data table
   const columnas = [
     {
@@ -41,52 +52,73 @@ const NuevaFacultad = () => {
   ];
 
   return (
-    <div name="listaentregablespendientes" className="h-screen w-full bg-white">
+    <div name="nuevafacultad" className="h-screen w-full bg-white">
       <div className="flex w-full h-20"></div>
-      <div className="max-w-screen-lg p-8 mx-auto flex flex-col justify-start w-full h-full">
-        <div className="pb-5 grid grid-cols-1">
-          <p className="  text-3xl font-semibold inline border-b-4  text-blue-900 flex-auto border-blue-900">
+      <div className="max-w-screen-lg p-8 mx-auto flex flex-col justify-start w-full h-fit">
+        <div className="pb-10 mb-4 grid grid-cols-1">
+          <p className="  text-3xl font-semibold inline border-b-4  text-blue-pucp flex-auto border-blue-pucp">
             Gestión de Facultades {">"} Nueva Facultad
           </p>
         </div>
 
-        <div className="pb-8 grid grid-cols-1">
-          <p className="text-1xl font-semibold inline    text-blue-900 flex-auto border-amber-600">
-            Nombre
-          </p>
-          <div className="w-72 pb-5">
-            <Input label="Ciencias e Ingeniería" />
+        <div className="pb-8">  
+          <p className="text-2xl font-semibold inline  text-amber-800 flex-auto">
+            Informacion general
+          </p>    
+        </div>
+
+        <div className="pb-8 flex flex-col">
+          <div className="w-full mb-4">
+            <Input label="Nombre de la facultad" />
           </div>
 
-          <p className="text-1xl font-semibold inline    text-blue-900 flex-auto border-amber-600">
-            Decano
-          </p>
-          <div className="w-72 pb-5">
-            <Input label="Francisco Remiche Zapata" />
-          </div>
-
-          <p className="text-1xl font-semibold inline    text-blue-900 flex-auto border-amber-600">
-            Fundación
-          </p>
-          <div className="w-72 pb-5">
-            <Input label="1933" />
+          <div className="w-full mb-4">
+            <Input label="Nombre del decano" />
           </div>
         </div>
 
-        <div className="pb-8 grid grid-cols-3">
-          <p className="text-1xl font-semibold inline w-full   text-blue-900 flex-auto border-amber-600">
-            Especialidades
-          </p>
-          <p className="w-full"> </p>
-          <div className="">
-            <Button className="mr-1">Agregar</Button>
-            <Button className="ml-5">Eliminar</Button>
+        <div className="flex flex-col w-full">
+          <div className="pb-4">
+            <p className="text-2xl font-semibold inline text-amber-800 flex-auto">
+              Especialidades
+            </p>
           </div>
+
+          <Stack direction="row" spacing={1} className="ml-auto">
+            <IconButton aria-label="delete">
+              <DeleteIcon />
+            </IconButton>
+            <IconButton aria-label="modify">
+              <EditIcon />
+            </IconButton>
+            <IconButton aria-label="add">
+              <AddCircleIcon />
+            </IconButton>
+          </Stack>
+
+          <Box sx={{ height: 250, width: '100%' }} className="pb-5">
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              pageSize={2}
+              rowsPerPageOptions={[3]}
+              checkboxSelection
+              disableSelectionOnClick
+              experimentalFeatures={{ newEditingApi: true }}
+            />
+          </Box>
+
+          <div className="grid grid-cols-3 w-full">
+            <div> </div>
+            <div> </div>
+            <div>
+              <Button variant="contained" className="bg-white text-blue-pucp border-b-3 ml-12">Cancelar</Button>
+              <Button variant="contained" className="bg-blue-pucp ml-5">Guardar</Button>
+            </div>          
+          </div>
+          
         </div>
 
-        <div className="pb-6 w-full" style={{ height: 350, width: "100%" }}>
-          <DataTable columns={columnas} data={users} />
-        </div>
       </div>
     </div>
   );
