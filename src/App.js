@@ -1,20 +1,19 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+//componentes principales
+import NavHorizontalBar from "./components/NavHorizontalBar";
+import NavVerticalBar from "./components/NavVerticalBar";
 
 import Home from "./pages/Home";
-import ListaEntregablesPendientes from "./pages/ListaEntregablesPendientes";
-import PendientesPorCorregir from "./pages/PendientesPorCorregir";
 import Inicio from "./pages/Inicio";
-import NavHorizontalBar from "./components/NavHorizontalBar";
-import GestionEntrega from "./pages/GestionEntrega";
-import NavVerticalBar from "./components/NavVerticalBar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "@material-tailwind/react";
-import GestionDeFacultades_NuevaFacultad from "./pages/Administrador/Jherson/GestionDeFacultades_NuevaFacultad";
-import GestionDeEspecialidades_NuevaEspecialidad from "./pages/Administrador/Ivan/GestionDeEspecialidades_NuevaEspecialidad";
-import GestionUsuarioDocente from "./pages/Administrador/Elizabeth/GestionUsuarioDocente";
+
 import GestionDeFacultades from "./pages/Administrador/Aldair/GestionDeFacultades";
 import GestionDeSemestres from "./pages/Administrador/Aldair/GestionDeSemestres";
 import GestionDeUsuarios from "./pages/Administrador/Aldair/GestionDeUsuarios";
 //<Route path = "/" exact component={Home}/>
+
+import ListaEntregablesPendientes from "./pages/ListaEntregablesPendientes";
+import PendientesPorCorregir from "./pages/PendientesPorCorregir";
+import GestionEntrega from "./pages/GestionEntrega";
 
 function App() {
   return (

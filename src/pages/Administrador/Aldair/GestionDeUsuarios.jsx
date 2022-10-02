@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+
 import { Select, Option } from "@material-tailwind/react";
 import { Input } from "@material-tailwind/react";
 import { Button } from "@material-tailwind/react";
@@ -23,7 +25,7 @@ const GestionDeUsuarios= () => {
     { id: 5, col1: '20173485', col2: 'Osman Vilchez Aguirre', col3: "Física"},
     { id: 6, col1: '20183294', col2: 'Fernando Vergara Guzman', col3: "Química"}, 
   ];
-  
+
   const columns: GridColDef[] = [
     { field: 'col1', headerName: 'Código', width: 150 },
     { field: 'col2', headerName: 'Nombre Completo', width: 350 },
@@ -70,9 +72,9 @@ const GestionDeUsuarios= () => {
           </Stack>
         </div>
 
-        <div className="pb-6" style={{ height: 350, width: '100%' }}>
+        <div className="pb-6" style={{ height: 350, width: "100%" }}>
           <Link to="/gestiondeusuarios">
-            <DataGrid rows={rows} columns={columns} checkboxSelection={true}/>
+            <DataGrid rows={rows} columns={columns} checkboxSelection={true} />
           </Link>
         </div>
       </div>

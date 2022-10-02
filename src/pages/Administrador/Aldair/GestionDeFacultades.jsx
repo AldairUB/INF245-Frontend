@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Select, Option, Textarea } from "@material-tailwind/react";
 import { Input } from "@material-tailwind/react";
@@ -13,16 +13,29 @@ import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 
 import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    Typography,
-  } from "@material-tailwind/react";
-  
-  import { BiTask } from "react-icons/bi";
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+} from "@material-tailwind/react";
+
+import { BiTask } from "react-icons/bi";
 
 const GestionDeFacultades = () => {
+  /////comineza
+  //1.- configurar los hooks
+  const [users, setUsers] = useState([]);
+  //2.- Funcion para mostrar los datos con fetch
+  const URL = "http://localhost:8081/api/v1/facultad"; //sacar del postman
+  //GA DE CAMBIO
+  //obtencion de data ******IMPORTANTE********
+  const showData = async () => {
+    const response = await fetch(URL);
+    const data = await response.json();
+    console.log(data);
+    setUsers(data);
+  };
 
   const columns: GridColDef[] = [
     {
@@ -47,16 +60,15 @@ const GestionDeFacultades = () => {
   ];
 
   return (
-    <div
-      name="gestiondefacultades"
-      className="h-screen w-full bg-white"
-    >
+    <div name="gestiondefacultades" className="h-screen w-full bg-white">
       <div className="flex w-full h-20"></div>
+
       <div className="max-w-screen-lg p-8 mx-auto flex flex-col justify-start w-full h-fit">
         <div className="pb-10 mb-4 grid grid-cols-1">          
             <p className="text-3xl font-bold inline border-b-4  text-blue-pucp flex-auto border-blue-pucp">
               Facultades
             </p>
+
         </div>
 
         <div className="pb-8 flex flex-row">
@@ -68,7 +80,7 @@ const GestionDeFacultades = () => {
             <Select label="Filtro">
               <Option>Nombre</Option>
               <Option>Código</Option>
-              </Select>
+            </Select>
           </div>
 
           <Stack direction="row" spacing={1} className="ml-auto flex">
@@ -85,9 +97,7 @@ const GestionDeFacultades = () => {
 
         </div>
         <div>
-          <div>
-            
-          </div>
+          <div></div>
 
           <Box sx={{ height: 350, width: '100%' }} className="pb-5">
             <DataGrid
@@ -102,7 +112,6 @@ const GestionDeFacultades = () => {
           </Box>
 
         </div>
-
       </div>
     </div>
   );

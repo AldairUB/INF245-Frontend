@@ -6,74 +6,56 @@ import { FiUsers } from "react-icons/fi";
 import { AiFillFileText } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-
-
 const NavVerticalBar = () => {
   const links = [
     {
       id: 1,
       child: (
-
-        <Link to="/"
-        className="flex justify-between items-center w-full text-white"
-        rel="noreferrer"
+        <Link
+          to="/"
+          className="flex justify-between items-center w-full text-white"
+          rel="noreferrer"
         >
           Inicio <AiOutlineHome size={25} />
         </Link>
-
       ),
       style: "rounded-tr-md",
     },
     {
       id: 2,
       child: (
-        <Link to="/pendientesporcorregir"
-        className="flex justify-between items-center w-full text-white"
-        rel="noreferrer"
+        <Link
+          to="/gestiondefacultades"
+          className="flex justify-between items-center w-full text-white"
+          rel="noreferrer"
         >
-          Pendientes <BiCalendarExclamation size={25} />
+          Facultades <BiCalendarExclamation size={25} />
         </Link>
       ),
     },
     {
       id: 3,
       child: (
-
-        <Link to="/listaentregablespendientes"
-        className="flex justify-between items-center w-full text-white"
-        rel="noreferrer"
+        <Link
+          to="/gestiondesemestres"
+          className="flex justify-between items-center w-full text-white"
+          rel="noreferrer"
         >
-          Tareas <BiTask size={25} />
+          Semestres <BiTask size={25} />
         </Link>
-
       ),
     },
     {
       id: 4,
       child: (
-
-        <Link to="/listaentregablespendientes"
-        className="flex justify-between items-center w-full text-white"
-        rel="noreferrer"
+        <Link
+          to="/gestiondeusuarios"
+          className="flex justify-between items-center w-full text-white"
+          rel="noreferrer"
         >
-          Participantes <FiUsers size={25} />
+          Usuarios <FiUsers size={25} />
         </Link>
-
       ),
-    },
-    {
-      id: 5,
-      child: (
-
-        <Link to="/listaentregablespendientes"
-        className="flex justify-between items-center w-full text-white"
-        rel="noreferrer"
-        >
-          Documentos <AiFillFileText size={25} />
-        </Link>
-
-      ),
-      style: "rounded-br-md",
     },
   ];
 
@@ -89,7 +71,7 @@ const NavVerticalBar = () => {
               style
             }
           >
-              {child}
+            {child}
           </li>
         ))}
       </ul>
