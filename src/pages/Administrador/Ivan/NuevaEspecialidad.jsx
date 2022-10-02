@@ -11,35 +11,53 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 
-const GestionDeFacultades_NuevaFacultad = () => {
+import {
+    Card,
+    CardHeader,
+    CardBody,
+    CardFooter,
+    Typography,
+  } from "@material-tailwind/react";
+
+const NuevaEspecialidad = () => {
 
   const columns: GridColDef[] = [
     {
       field: 'codigo',
-      headerName: 'Código de la especialidad',
-      width: 200,
+      headerName: 'Código del curso',
+      width: 150,
       editable: true,
     },
     {
       field: 'nombre',
-      headerName: 'Nombre de la especialidad',
+      headerName: 'Nombre del curso',
       width: 540,
+      editable: true,
+    },
+    {
+      field: 'semestre',
+      headerName: 'Semestre de dictado',
+      width: 150,
       editable: true,
     },
   ];
   
   const rows = [
-    { id: 1, codigo: 'INF', nombre: 'Ingeniería Informática'},
-    { id: 2, codigo: 'MEC', nombre: 'Ingeniería Mecánica'},
+    { id: 1, codigo: 'INF248', nombre: 'Proyecto de Tesis 1', semestre: '2022-2' },
+    { id: 2, codigo: 'INF249', nombre: 'Proyecto de Tesis 2', semestre: '2022-2' },
   ];
 
   return (
-    <div name="gestiondefacultades_nuevafacultades" className="h-screen w-full bg-white">
+    <div
+      name="nuevaespecialidad"
+      className="h-fit w-full bg-white"
+    >
       <div className="flex w-full h-20"></div>
-      <div className="max-w-screen-lg p-8 mx-auto flex flex-col justify-start w-full h-full">
+          
+      <div className="max-w-screen-lg p-8 mx-auto flex flex-col justify-start w-full h-fit">
         <div className="pb-10 mb-4 grid grid-cols-1">          
             <p className="text-3xl font-semibold inline border-b-4  text-blue-pucp flex-auto border-blue-pucp">
-            Gestión de Facultades {">"} Nueva Facultad
+              Gestión de Especialidades {">"} Nueva Especialidad
             </p>
         </div>
 
@@ -50,20 +68,33 @@ const GestionDeFacultades_NuevaFacultad = () => {
         </div>
 
         <div className="pb-4 flex flex-col w-full">
-          <div className="w-full mb-4">
-            <Input label="Nombre de la facultad" />
+
+          <div className="flex flex-row">
+            <div className="w-72 mb-4 mr-4">
+              <Input label="Clave" />
+            </div>
+
+            <div className="w-full mb-4">
+              <Input label="Nombre" />
+            </div>
           </div>
 
-          <div className="w-full pb-8">
-            <Input label="Nombre del decano" />
+          <div className="w-full">
+            <Input label="Coordinador" />
           </div>
 
+        </div>
+
+        <div className="pb-8 flex flex-col w-full h-50">
+          <div className="w-full h-full">
+            <Textarea label="Descripción" />
+          </div>
         </div>
 
         <div className="flex flex-col w-full">
           <div className="pb-4">
             <p className="text-2xl font-semibold inline text-amber-800 flex-auto">
-              Especialidades
+              Cursos
             </p>
           </div>
 
@@ -99,10 +130,12 @@ const GestionDeFacultades_NuevaFacultad = () => {
               <Button variant="contained" className="bg-blue-pucp ml-5">Guardar</Button>
             </div>          
           </div>
+          
         </div>
 
       </div>
     </div>
   );
 };
-export default GestionDeFacultades_NuevaFacultad;
+
+export default NuevaEspecialidad;

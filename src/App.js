@@ -14,15 +14,15 @@ import GestionDeUsuarios from "./pages/Administrador/Aldair/GestionDeUsuarios";
 import NuevaFacultad from "./pages/Administrador/Camila/NuevaFacultad";
 import NuevoSemestre from "./pages/Administrador/Camila/NuevoSemestre";
 import NuevoUsuario from "./pages/Administrador/Camila/NuevoUsuario";
+import NuevaEspecialidad from "./pages/Administrador/Ivan/NuevaEspecialidad";
 
-import GestionUsuarioDocente from "./pages/Administrador/Elizabeth/GestionUsuarioDocente";
+import NuevoUsuario2 from "./pages/Administrador/Elizabeth/NuevoUsuario2";
 //<Route path = "/" exact component={Home}/>
 
 import ListaEntregablesPendientes from "./pages/ListaEntregablesPendientes";
 import PendientesPorCorregir from "./pages/PendientesPorCorregir";
 import GestionEntrega from "./pages/GestionEntrega";
-import GestionDeEspecialidades_NuevaEspecialidad from "./pages/Administrador/Ivan/GestionDeEspecialidades_NuevaEspecialidad";
-import GestionDeFacultades_NuevaFacultad from "./pages/Administrador/Jherson/GestionDeFacultades_NuevaFacultad";
+
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
         <Routes>
           <Route path="/" element = {<NuevoUsuario/>}> </Route>
           <Route path="/home" element = {<Home/>}> </Route>
-          <Route path="/listaentregablespendientes" element = {<ListaEntregablesPendientes/>}> </Route>
+          <Route path="/nuevaespecialidad" element = {<NuevaEspecialidad/>}> </Route>
           <Route path="/pendientesporcorregir" element = {<PendientesPorCorregir/>}> </Route>
           <Route path="/gestionentrega" element = {<GestionEntrega/>}> </Route>
         </Routes>

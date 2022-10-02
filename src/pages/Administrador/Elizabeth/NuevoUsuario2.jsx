@@ -5,17 +5,17 @@ import { Select, Option } from "@material-tailwind/react";
 import { Switch } from "@material-tailwind/react";
 
 
-const GestionUsuarioDocente = () => {
+const NuevoUsuario = () => {
   return (
     <div
-      name="gestionusuariodocente"
+      name="nuevousuario"
       className="h-screen w-full bg-white"
     >
       <div className="flex w-full h-20"></div>
       <div className="max-w-screen-lg p-7 mx-auto flex flex-col justify-start w-full h-fit">
         <div className="pb-10 mb-4 grid grid-cols-1">          
           <p className="text-3xl font-semibold inline border-b-4  text-blue-pucp flex-auto border-blue-pucp">
-            Gestión de Docentes {">"} Rony Cueva
+            Gestión de usuarios {">"} Nuevo usuario
           </p>          
         </div>
 
@@ -127,4 +127,4 @@ const GestionUsuarioDocente = () => {
   );
 };
 
-export default GestionUsuarioDocente;
+export default NuevoUsuario;
