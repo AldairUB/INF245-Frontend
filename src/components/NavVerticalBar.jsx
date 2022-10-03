@@ -12,7 +12,7 @@ const NavVerticalBar = () => {
       id: 1,
       child: (
         <Link
-          to="/"
+          to="/home"
           className="flex justify-between items-center w-full text-white"
           rel="noreferrer"
         >

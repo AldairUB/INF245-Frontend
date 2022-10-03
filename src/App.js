@@ -31,8 +31,11 @@ function App() {
         <NavHorizontalBar />
         <NavVerticalBar />
         <Routes>
-          <Route path="/" element = {<NuevoUsuario/>}> </Route>
+          <Route path="/" element = {<Inicio/>}> </Route>
           <Route path="/home" element = {<Home/>}> </Route>
+          <Route path="/gestiondefacultades" element = {<GestionDeFacultades/>}> </Route>
+          <Route path="/gestiondesemestres" element = {<GestionDeSemestres/>}></Route>
+          <Route path="/gestiondeusuarios" element = {<GestionDeUsuarios/>}> </Route>
           <Route path="/nuevaespecialidad" element = {<NuevaEspecialidad/>}> </Route>
           <Route path="/pendientesporcorregir" element = {<PendientesPorCorregir/>}> </Route>
           <Route path="/gestionentrega" element = {<GestionEntrega/>}> </Route>
