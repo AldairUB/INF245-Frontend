@@ -55,14 +55,22 @@ const Inicio = () => {
                     </a>
                   </div>
                 </div>
+
+                
+
                 <div>
-                  <button
-                    type="submit"
-                    class="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500"
-                  >
-                    Sign in
-                  </button>
+                  
+                <Link to="/home">
+                      <button
+                        type="submit"
+                        class="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500"
+                      >
+                        Sign in
+                      </button>
+                </Link>
+
                 </div>
+                
 
                 <div class="flex items-center justify-center space-x-2 my-5">
                   <span class="h-px w-16 bg-gray-100"></span>
@@ -70,7 +78,7 @@ const Inicio = () => {
                   <span class="h-px w-16 bg-gray-100"></span>
                 </div>
                 <div class="flex justify-center gap-5 w-full ">
-                  <Link to="/home">
+                  
                     <button
                       type="submit"
                       class="w-full flex items-center justify-center mb-6 md:mb-0 border border-gray-300 hover:border-gray-900 hover:bg-gray-900 text-sm text-gray-500 p-3  rounded-lg tracking-wide font-medium  cursor-pointer transition ease-in duration-500"
@@ -100,7 +108,7 @@ const Inicio = () => {
 
                       <span>Google</span>
                     </button>
-                  </Link>
+                  
                 </div>
               </div>
               <div class="mt-7 text-center text-blue-300 text-xs">

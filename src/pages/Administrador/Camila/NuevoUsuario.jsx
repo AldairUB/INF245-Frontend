@@ -22,100 +22,94 @@ const NuevoUsuario = () => {
       className="h-screen w-full bg-white"
     >
       <div className="flex w-full h-20"></div>
-      <div className="max-w-screen-lg p-8 mx-auto flex flex-col justify-start w-full h-full">
+      <div className="max-w-screen-lg p-8 mx-auto flex flex-col justify-start w-full h-fit">
         <div className="pb-10 mb-4 grid grid-cols-1">          
-            <p className="text-3xl font-semibold inline border-b-4  text-blue-900 flex-auto border-blue-900">
-              Gestión de Usuarios > Nuevo Usuario
+            <p className="text-3xl font-semibold inline border-b-4  text-blue-pucp flex-auto border-blue-pucp">
+              Gestión de Usuarios {">"} Nuevo Usuario
             </p>
         </div>
 
-        <div className="pb-8 grid grid-cols-2">  
-          <p className="text-3xl font-semibold inline border-b-4  text-amber-600 flex-auto border-amber-600">
-            Datos Personales
-          </p>   
+        <div className="pb-8">  
+          <p className="text-2xl font-semibold inline  text-amber-800 flex-auto">
+            Datos personales
+          </p>    
         </div>
-        <div className="pb-8 grid grid-cols-1">
-          <p className="text-1xl font-semibold inline    text-blue-900 flex-auto border-amber-600">
-            DNI
-          </p>
-          <div className="w-72 pb-5">
-            <Input label="DNI" />
+
+        <div className="pb-4 flex flex-col w-full">
+
+          <div className="flex flex-row">
+            <div className="w-72 mb-4 mr-4">
+              <Input label="DNI" />
+            </div>
+
+            <div className="w-full mb-4">
+              <Input label="Nombres y apellidos" />
+            </div>
           </div>
 
-          <p className="text-1xl font-semibold inline    text-blue-900 flex-auto border-amber-600">
-            Nombre
-          </p>
-          <div className="w-72 pb-5">
-            <Input label="Nombre del Usuario" />
-          </div>
-
-          <p className="text-1xl font-semibold inline    text-blue-900 flex-auto border-amber-600">
-            Apellidos
-          </p>
-          <div className="w-72 pb-5">
-            <Input label="Apellidos del Usuario" />
-          </div>
         </div>
-        <div className="pb-8 grid grid-cols-2">  
-          <p className="text-3xl font-semibold inline border-b-4  text-amber-600 flex-auto border-amber-600">
-            Identificación y Correo
-          </p>   
+
+        <div className="pb-8">  
+          <p className="text-2xl font-semibold inline  text-amber-800 flex-auto">
+            Identificación y correo
+          </p>    
         </div>
-        <p className="text-1xl font-semibold inline    text-blue-900 flex-auto border-amber-600">
-            Código
-          </p>
-          <div className="w-72 pb-5">
-            <Input label="Código del Usuario" />
-          </div>
-        
-          <p className="text-1xl font-semibold inline    text-blue-900 flex-auto border-amber-600">
-            Especialidad
-          </p>
 
-          <div className="w-70  pb-5">
-            <Select label="Especialidad">
-              <Option>Ingeniería Informática</Option>
-              <Option>Ingeniería Industrial</Option>
-              <Option>Ingeniería Mecatrónica</Option>
-              <Option>Física</Option>
-              <Option>Química</Option>
-            </Select>
+        <div className="pb-4 flex flex-col w-full">
+          
+
+
+          <div className="flex flex-row">
+            <div className="w-72 mb-4">
+              <Input label="Código Pucp" />
+            </div>
+            <div className="w-full  mb-4">
+            </div>
           </div>
 
-          <p className="text-1xl font-semibold inline    text-blue-900 flex-auto border-amber-600">
-            Correo
-          </p>
-          <div className="w-72 pb-5">
+          <div className="flex flex-row">
+            <div className="w-72 mb-4 mr-4">
+              <Select label="Facultad">
+                <Option>Ciencias e Ingeniería</Option>
+                <Option>Derecho</Option>
+                <Option>Artes Escénicas</Option>
+              </Select>
+            </div>
+
+            <div className="w-full  mb-4">
+              <Select label="Especialidad">
+                <Option>Ingeniería Informática</Option>
+                <Option>Ingeniería Industrial</Option>
+                <Option>Ingeniería Mecatrónica</Option>
+                <Option>Física</Option>
+                <Option>Química</Option>
+              </Select>
+            </div>
+          </div>      
+
+          <div className="w-full pb-5">
             <Input label="Correo del Usuario" />
           </div>
 
-          <p className="text-1xl font-semibold inline    text-blue-900 flex-auto border-amber-600">
-            Facultad
-          </p>
-
-          <div className="w-70  pb-5">
-            <Select label="Facultad">
-              <Option>Ciencias e Ingeniería</Option>
-              <Option>Derecho</Option>
-              <Option>Artes Escénicas</Option>
-            </Select>
-          </div>
-
-          <p className="text-1xl font-semibold inline    text-blue-900 flex-auto border-amber-600">
-            Tipo de Usuario
-          </p>
-
-          <div className="w-70  pb-5">
+          <div className="w-full  pb-5">
             <Select label="Tipo de Usuario">
               <Option>Alumno</Option>
               <Option>Asesor</Option>
             </Select>
-          </div>
-          <p className="w-full"> </p>
-          <div className="">
-        <Button className="mr-1">Cancelar</Button>
-        <Button className="ml-5">Guardar</Button>
+          </div>    
+
         </div>
+        
+        <div className="grid grid-cols-3 w-full">
+          <div> </div>
+          <div> </div>
+          <div>
+            <Button variant="contained" className="bg-white text-blue-pucp border-b-3 ml-12">Cancelar</Button>
+            <Button variant="contained" className="bg-blue-pucp ml-5">Guardar</Button>
+          </div>          
+        </div>
+
+
       </div>
     </div>
   );
