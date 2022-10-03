@@ -23,6 +23,12 @@ import ListaEntregablesPendientes from "./pages/ListaEntregablesPendientes";
 import PendientesPorCorregir from "./pages/PendientesPorCorregir";
 import GestionEntrega from "./pages/GestionEntrega";
 import PantalladeCursos from "./pages/Coordinador/PantalladeCurso";
+import NuevoCurso from "./pages/Coordinador/Nuevo Curso";
+import ListaDeAlumnos from "./pages/Coordinador/ListaDeAlumnos";
+import ListaDeDocentes from "./pages/Coordinador/ListaDeDocentes";
+import ReporteDeAlumnos from "./pages/Coordinador/ReporteDeAlumnos";
+import ReporteDeSemestres from "./pages/Coordinador/ReporteDeSemestres";
+import ReporteDeEntregables from "./pages/Coordinador/ReporteDeEntregables";
 
 
 function App() {
@@ -33,7 +39,7 @@ function App() {
         <NavVerticalBar />
         <Routes>
           <Route path="/" element = {<Inicio/>}> </Route>
-          <Route path="/home" element = {<Home/>}> </Route>
+          <Route path="/home" element = {<ReporteDeEntregables/>}> </Route>
           <Route path="/gestiondefacultades" element = {<GestionDeFacultades/>}> </Route>
           <Route path="/gestiondesemestres" element = {<GestionDeSemestres/>}></Route>
           <Route path="/gestiondeusuarios" element = {<GestionDeUsuarios/>}> </Route>
