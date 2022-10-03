@@ -22,6 +22,7 @@ import NuevoUsuario2 from "./pages/Administrador/Elizabeth/NuevoUsuario2";
 import ListaEntregablesPendientes from "./pages/ListaEntregablesPendientes";
 import PendientesPorCorregir from "./pages/PendientesPorCorregir";
 import GestionEntrega from "./pages/GestionEntrega";
+import PantalladeCursos from "./pages/Coordinador/PantalladeCurso";
 
 
 function App() {
