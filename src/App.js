@@ -22,6 +22,7 @@ import NuevoUsuario2 from "./pages/Administrador/Elizabeth/NuevoUsuario2";
 import ListaEntregablesPendientes from "./pages/ListaEntregablesPendientes";
 import PendientesPorCorregir from "./pages/PendientesPorCorregir";
 import GestionEntrega from "./pages/GestionEntrega";
+import PantalladeCursos from "./pages/Coordinador/PantalladeCurso";
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
         <NavHorizontalBar />
         <NavVerticalBar />
         <Routes>
-          <Route path="/" element = {<NuevoUsuario/>}> </Route>
+          <Route path="/" element = {<NuevaEspecialidad/>}> </Route>
           <Route path="/home" element = {<Home/>}> </Route>
           <Route path="/nuevaespecialidad" element = {<NuevaEspecialidad/>}> </Route>
           <Route path="/pendientesporcorregir" element = {<PendientesPorCorregir/>}> </Route>
