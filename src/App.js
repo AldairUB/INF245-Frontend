@@ -37,7 +37,7 @@ function App() {
         <NavHorizontalBar />
         <NavVerticalBar />
         <Routes>
-          <Route path="/" element={<Inicio />}>
+          <Route path="/" element={<GestionDeSemestres />}>
             {" "}
           </Route>
           <Route path="/home" element={<Home />}>
