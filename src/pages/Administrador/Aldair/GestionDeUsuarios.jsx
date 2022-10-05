@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
@@ -13,24 +13,57 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 
-
+import {listarUsuarios} from '../../../services/UsuarioServices';
+import DataTable from "react-data-table-component";
 
 const GestionDeUsuarios= () => {
 
-  const rows: GridRowsProp = [
-    { id: 1, col1: '20181923', col2: 'Iván Córdova Rivero', col3: "Ingeniería Informática"},
-    { id: 2, col1: '20182778', col2: 'Elizabeth Oyarce Tocto', col3: "Ingeniería Informática"},
-    { id: 3, col1: '20182970', col2: 'Ángel Lino Campos', col3: "Ingeniería Industrial"},
-    { id: 4, col1: '20190666', col2: 'Bruno del Rio Escudero', col3: "Ingeniería Informática"},
-    { id: 5, col1: '20173485', col2: 'Osman Vilchez Aguirre', col3: "Física"},
-    { id: 6, col1: '20183294', col2: 'Fernando Vergara Guzman', col3: "Química"}, 
+  const [search, setSearch] =
+    useState(""); /*Default: muestra todo copia de users */
+  const [filtered, setFiltered] = useState([]);
+
+  const [users, setUsers] = useState([]);
+  const showData = async () => {
+    try {
+      const usuarios = await listarUsuarios();
+      const data = usuarios.data;
+      setUsers(data);
+      setFiltered(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    showData();
+  }, []);
+
+  useEffect(() => {
+    const result = users.filter((user) => {
+      return user.apellido.toLowerCase().match(search.toLowerCase());
+    });
+    setFiltered(result);
+  }, [search]);
+
+  const columnas = [
+    {
+      name: "Código",
+      selector: (row) => row.codigoPUCP,
+      sortable: true,
+    },
+    {
+      name: "Nombre Completo",
+      selector: (row) => row.nombre + " " + row.apellido,
+      sortable: true,
+    },
+    {
+      name: "Correo Electrónico",
+      selector: (row) => row.correo,
+      sortable: true,
+    },
   ];
 
-  const columns: GridColDef[] = [
-    { field: 'col1', headerName: 'Código', width: 150 },
-    { field: 'col2', headerName: 'Nombre Completo', width: 350 },
-    { field: 'col3', headerName: 'Especialidad', width: 200 },
-  ];
 
   return (
     <div
@@ -47,7 +80,11 @@ const GestionDeUsuarios= () => {
 
         <div className="pb-8 flex flex-row">
           <div className="w-72">
-            <Input label="Buscar" />
+            <Input 
+            label="Buscar" 
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            />
           </div>
           <div className="w-72  mx-12">
             <Select label="Especialidad">
@@ -73,9 +110,16 @@ const GestionDeUsuarios= () => {
         </div>
 
         <div className="pb-6" style={{ height: 350, width: "100%" }}>
-          <Link to="/gestiondeusuarios">
-            <DataGrid rows={rows} columns={columns} checkboxSelection={true} />
-          </Link>
+          
+            <DataTable
+                columns={columnas}
+                data={filtered}
+                pagination
+                selectableRows
+                selectableRowsHighlight
+                highlightOnHover
+            ></DataTable>
+    
         </div>
       </div>
     </div>
