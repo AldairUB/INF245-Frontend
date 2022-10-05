@@ -99,7 +99,7 @@ const GestionDeSemestres = () => {
             <IconButton aria-label="modify">
               <EditIcon />
             </IconButton>
-            <IconButton aria-label="add">
+            <IconButton aria-label="add" onClick={()=>modalInsertar()}>
               <AddCircleIcon />
             </IconButton>
           </Stack>
@@ -117,7 +117,7 @@ const GestionDeSemestres = () => {
               highlightOnHover
             ></DataTable>
           </Box>
-                    {/*aca comienza el form*/}
+          {/*aca comienza el form*/}
 
             <Dialog open={open}>
             <DialogTitle>Formulario</DialogTitle>
