@@ -11,3 +11,15 @@ export const listarFacultades = () => {
       });
   });
 };
+
+export const insertarFacultad = (facultad) => {
+  return new Promise((resolve, reject) => {
+    HttpClient.post("facultad", facultad)
+      .then((resultado) => {
+        resolve(resultado);
+      })
+      .catch((error) => {
+        resolve(error);
+      });
+  });
+};
