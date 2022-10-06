@@ -6,37 +6,35 @@ import { Button } from "@material-tailwind/react";
 import { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 
-import Box from '@mui/material/Box';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import Box from "@mui/material/Box";
+import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
-import Stack from '@mui/material/Stack';
-
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
+import Stack from "@mui/material/Stack";
 
 //GAAAAAAAAA1 CAMBIO
 const NuevaFacultad = () => {
-
   const columns: GridColDef[] = [
     {
-      field: 'codigo',
-      headerName: 'Código de la especialidad',
+      field: "codigo",
+      headerName: "Código de la especialidad",
       width: 150,
       editable: true,
     },
     {
-      field: 'nombre',
-      headerName: 'Nombre de la especialidad',
+      field: "nombre",
+      headerName: "Nombre de la especialidad",
       width: 540,
       editable: true,
     },
   ];
-  
+
   const rows = [
-    { id: 1, codigo: 'ES001', nombre: 'Ingeniería Informática' },
-    { id: 2, codigo: 'ES002', nombre: 'Ingeniería Mecatrónica'},
+    { id: 1, codigo: "ES001", nombre: "Ingeniería Informática" },
+    { id: 2, codigo: "ES002", nombre: "Ingeniería Mecatrónica" },
   ];
 
   //3. Configuramos las columnas para el data table
@@ -61,10 +59,10 @@ const NuevaFacultad = () => {
           </p>
         </div>
 
-        <div className="pb-8">  
+        <div className="pb-8">
           <p className="text-2xl font-semibold inline  text-amber-800 flex-auto">
             Informacion general
-          </p>    
+          </p>
         </div>
 
         <div className="pb-8 flex flex-col">
@@ -96,7 +94,7 @@ const NuevaFacultad = () => {
             </IconButton>
           </Stack>
 
-          <Box sx={{ height: 250, width: '100%' }} className="pb-5">
+          <Box sx={{ height: 250, width: "100%" }} className="pb-5">
             <DataGrid
               rows={rows}
               columns={columns}
@@ -112,13 +110,18 @@ const NuevaFacultad = () => {
             <div> </div>
             <div> </div>
             <div>
-              <Button variant="contained" className="bg-white text-blue-pucp border-b-3 ml-12">Cancelar</Button>
-              <Button variant="contained" className="bg-blue-pucp ml-5">Guardar</Button>
-            </div>          
+              <Button
+                variant="contained"
+                className="bg-white text-blue-pucp border-b-3 ml-12"
+              >
+                Cancelar
+              </Button>
+              <Button variant="contained" className="bg-blue-pucp ml-5">
+                Guardar
+              </Button>
+            </div>
           </div>
-          
         </div>
-
       </div>
     </div>
   );

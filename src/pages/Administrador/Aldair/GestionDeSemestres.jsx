@@ -2,17 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Select, Option, Textarea } from "@material-tailwind/react";
 import { Input } from "@material-tailwind/react";
-import { Button } from "@material-tailwind/react";
-import Box from '@mui/material/Box';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
-import Stack from '@mui/material/Stack';
-
-
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
+import Stack from "@mui/material/Stack";
+import DataTable from "react-data-table-component";
+import { listarSemestres } from "../../../services/SemestreServices";
 import {
   Card,
   CardHeader,
@@ -20,47 +18,67 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
-
-import { BiTask } from "react-icons/bi";
-
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Divider,
+  Box,
+  Button,
+  TextField,
+} from "@mui/material";
 const GestionDeSemestres = () => {
+  const [anio, setAnioAcademico] = useState("");
+  const [periodo, setPeriodo] = useState("");
+  const [iniPeriodo, setIniPeriodo] = useState("");
+  const [finPeriodo, setFinPeriodo] = useState("");
+  const [iniNotas, setIniNotas]=useState("");
+  const [finNotas, setFinNotas]=useState("");
+  const [users, setUsers] = useState([]);
+  const [open, setOpen] = useState(false);
+  const showData = async () => {
+    try {
+      const usuarios = await listarSemestres();
+      const data = usuarios.data;
+      setUsers(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const columns: GridColDef[] = [
+  useEffect(() => {
+    showData();
+  }, []);
+
+  const columnas = [
     {
-      field: 'semestre',
-      headerName: 'Semestre',
-      width: 150,
-      editable: true,
+      name: "SEMESTRE",
+      selector: (row) => row.anhoAcademico + "-" + row.periodo,
     },
     {
-      field: 'inicio_semestre',
-      headerName: 'Inicio semestre',
-      width: 200,
-      editable: true,
+      name: "INICIO",
+      selector: (row) => row.fechaInicio,
     },
     {
-      field: 'fin_semestre',
-      headerName: 'Fin semestre',
-      width: 200,
-      editable: true,
+      name: "FIN",
+      selector: (row) => row.fechaFin,
     },
   ];
-  
-  const rows = [
-    { id: 1, semestre: '2022-1', inicio_semestre: '01/01/2022', fin_semestre: '31/07/2022'},
-    { id: 2, semestre: '2021-2', inicio_semestre: '01/06/2021', fin_semestre: '20/12/2021'},
-    { id: 3, semestre: '2021-1', inicio_semestre: '01/01/2021', fin_semestre: '20/05/2021'},
-  ]
+  const modalInsertar = () => {
+    setOpen(!open);
+  };
   return (
     <div name="gestiondesemestres" className="h-screen w-full bg-white">
       <div className="flex w-full h-20"></div>
 
       <div className="max-w-screen-lg p-8 mx-auto flex flex-col justify-start w-full h-fit">
-        <div className="pb-10 mb-4 grid grid-cols-1">          
-            <p className="text-3xl font-bold inline border-b-4  text-blue-pucp flex-auto border-blue-pucp">
-              Semestres Académicos
-            </p>
-
+        <div className="pb-10 mb-4 grid grid-cols-1">
+          <p className="text-3xl font-bold inline border-b-4  text-blue-pucp flex-auto border-blue-pucp">
+            Semestres Académicos
+          </p>
         </div>
 
         <div className="pb-8 flex flex-row">
@@ -81,7 +99,7 @@ const GestionDeSemestres = () => {
             <IconButton aria-label="modify">
               <EditIcon />
             </IconButton>
-            <IconButton aria-label="add">
+            <IconButton aria-label="add" onClick={()=>modalInsertar()}>
               <AddCircleIcon />
             </IconButton>
           </Stack>
@@ -89,18 +107,111 @@ const GestionDeSemestres = () => {
         <div>
           <div></div>
 
-          <Box sx={{ height: 350, width: '100%' }} className="pb-5">
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              pageSize={4}
-              rowsPerPageOptions={[4]}
-              checkboxSelection
-              disableSelectionOnClick
-              experimentalFeatures={{ newEditingApi: true }}
-            />
+          <Box sx={{ height: 350, width: "100%" }} className="pb-5">
+            <DataTable
+              columns={columnas}
+              data={users}
+              pagination
+              selectableRows
+              selectableRowsHighlight
+              highlightOnHover
+            ></DataTable>
           </Box>
+          {/*aca comienza el form*/}
 
+            <Dialog open={open}>
+            <DialogTitle>Formulario</DialogTitle>
+            <Divider />
+            <DialogContent>
+              <DialogContentText>
+                <p ml="10px" mr="10px">
+                  Llene los siguientes campos
+                </p>
+              </DialogContentText>
+              <Box
+                sx={{
+                  marginTop: 2,
+                  marginBottom: 3,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                }}
+              >
+                <TextField
+                  required
+                  margin="normal"
+                  id="anio"
+                  label="Año académico"
+                  type="text"
+                  fullWidth
+                  variant="standard"
+                  value={anio}
+                  onChange={(e) => setAnioAcademico(e.target.value)}
+                />
+
+                <TextField
+                  required
+                  margin="normal"
+                  id="periodo"
+                  label="Periodo"
+                  type="text"
+                  fullWidth
+                  variant="standard"
+                  value={periodo}
+                  onChange={(e) => setPeriodo(e.target.value)}
+                />
+
+                  <TextField
+                    required
+                    margin="normal"
+                    id="iniPeriodo"
+                    label="Inicio del Periodo"
+                    fullWidth
+                    variant="standard"
+                    value={iniPeriodo}
+                    onChange={(e) => setIniPeriodo(e.target.value)}
+                  />
+                
+                <TextField
+                    required
+                    margin="normal"
+                    id="finPeriodo"
+                    label="Fin del Periodo"
+                    fullWidth
+                    variant="standard"
+                    value={finPeriodo}
+                    onChange={(e) => setFinPeriodo(e.target.value)}
+                  />
+
+                <TextField
+                    required
+                    margin="normal"
+                    id="iniNotas"
+                    label="Cierre Parcial de Notas"
+                    fullWidth
+                    variant="standard"
+                    value={iniNotas}
+                    onChange={(e) => setIniNotas(e.target.value)}
+                  />
+
+                <TextField
+                    required
+                    margin="normal"
+                    id="finNotas"
+                    label="Cierre Final de Notas"
+                    fullWidth
+                    variant="standard"
+                    value={finNotas}
+                    onChange={(e) => setFinNotas(e.target.value)}
+                  />
+              </Box>
+            </DialogContent>
+            <DialogActions>
+              <Button variant="contained" onClick={() => modalInsertar()}>
+                Cancelar
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
       </div>
     </div>
