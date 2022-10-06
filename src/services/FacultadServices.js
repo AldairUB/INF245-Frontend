@@ -12,7 +12,7 @@ export const listarFacultades = () => {
   });
 };
 
-export const insertarFacultad = (facultad) => {
+export const agregarFacultad = (facultad) => {
   return new Promise((resolve, reject) => {
     HttpClient.post("facultad", facultad)
       .then((resultado) => {

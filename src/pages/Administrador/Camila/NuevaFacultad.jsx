@@ -16,11 +16,17 @@ import {
   listarEspecialidades,
   agregarEspecialidades,
 } from "../../../services/EspecialidaServices";
+import { agregarFacultad } from "../../../services/FacultadServices";
 import DataTable from "react-data-table-component";
 //GAAAAAAAAA1 CAMBIO
 const NuevaFacultad = () => {
   const [especialidad, setEspecialidad] = useState([]);
-
+  const [nuevaEspecialidad, setNuevaEspecialidad] = useState({
+    nombre: "",
+    codigo: "",
+    nombreCoordinador: "",
+    descripcion: "",
+  });
   const showData = async () => {
     try {
       const esp = await listarEspecialidades();
@@ -53,6 +59,21 @@ const NuevaFacultad = () => {
       selector: (row) => "Ingeniería " + row.nombre,
     },
   ];
+  const handleInputChange = async (event) => {
+    console.log();
+    event.persist();
+    await setNuevaEspecialidad({
+      ...nuevaEspecialidad,
+      [event.target.name]: event.target.value,
+    }).catch((error) => {
+      console.log(error.message);
+    });
+  };
+
+  const addFacultad = () => {
+    agregarFacultad(nuevaEspecialidad);
+    showData();
+  };
   return (
     <div name="nuevafacultad" className="h-screen w-full bg-white">
       <div className="flex w-full h-20"></div>
@@ -71,11 +92,26 @@ const NuevaFacultad = () => {
 
         <div className="pb-8 flex flex-col">
           <div className="w-full mb-4">
-            <Input label="Nombre de la facultad" />
+            <Input
+              label="Nombre de la facultad"
+              name="nombre"
+              onChange={handleInputChange}
+            />
           </div>
 
           <div className="w-full mb-4">
-            <Input label="Nombre del decano" />
+            <Input
+              label="Nombre del decano"
+              name="decano"
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="w-full mb-4">
+            <Input
+              label="Año de fundacion"
+              name="anhoFundacion"
+              onChange={handleInputChange}
+            />
           </div>
         </div>
 
@@ -121,7 +157,11 @@ const NuevaFacultad = () => {
               >
                 Cancelar
               </Button>
-              <Button variant="contained" className="bg-blue-pucp ml-5">
+              <Button
+                variant="contained"
+                className="bg-blue-pucp ml-5"
+                onClick={() => addFacultad()}
+              >
                 Guardar
               </Button>
             </div>
