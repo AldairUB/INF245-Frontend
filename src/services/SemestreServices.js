@@ -11,3 +11,15 @@ export const listarSemestres = () => {
       });
   });
 };
+
+export const agregarSemestre = (semestre) => {
+  return new Promise((resolve,reject) => {
+    HttpClient.post("semestre", semestre)
+      .then((resultado) => {
+        resolve(resultado);
+      })
+      .catch((error) => {
+        resolve(error);
+      });
+  });
+};
