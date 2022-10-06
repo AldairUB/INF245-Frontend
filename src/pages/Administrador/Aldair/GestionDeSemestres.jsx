@@ -34,8 +34,8 @@ const GestionDeSemestres = () => {
   const [periodo, setPeriodo] = useState("");
   const [iniPeriodo, setIniPeriodo] = useState("");
   const [finPeriodo, setFinPeriodo] = useState("");
-  const [iniNotas, setIniNotas]=useState("");
-  const [finNotas, setFinNotas]=useState("");
+  const [iniNotas, setIniNotas] = useState("");
+  const [finNotas, setFinNotas] = useState("");
   const [users, setUsers] = useState([]);
   const [open, setOpen] = useState(false);
   const showData = async () => {
@@ -99,7 +99,7 @@ const GestionDeSemestres = () => {
             <IconButton aria-label="modify">
               <EditIcon />
             </IconButton>
-            <IconButton aria-label="add" onClick={()=>modalInsertar()}>
+            <IconButton aria-label="add" onClick={() => modalInsertar()}>
               <AddCircleIcon />
             </IconButton>
           </Stack>
@@ -119,7 +119,7 @@ const GestionDeSemestres = () => {
           </Box>
           {/*aca comienza el form*/}
 
-            <Dialog open={open}>
+          <Dialog open={open}>
             <DialogTitle>Formulario</DialogTitle>
             <Divider />
             <DialogContent>
@@ -161,49 +161,49 @@ const GestionDeSemestres = () => {
                   onChange={(e) => setPeriodo(e.target.value)}
                 />
 
-                  <TextField
-                    required
-                    margin="normal"
-                    id="iniPeriodo"
-                    label="Inicio del Periodo"
-                    fullWidth
-                    variant="standard"
-                    value={iniPeriodo}
-                    onChange={(e) => setIniPeriodo(e.target.value)}
-                  />
-                
                 <TextField
-                    required
-                    margin="normal"
-                    id="finPeriodo"
-                    label="Fin del Periodo"
-                    fullWidth
-                    variant="standard"
-                    value={finPeriodo}
-                    onChange={(e) => setFinPeriodo(e.target.value)}
-                  />
+                  required
+                  margin="normal"
+                  id="iniPeriodo"
+                  label="Inicio del Periodo"
+                  fullWidth
+                  variant="standard"
+                  value={iniPeriodo}
+                  onChange={(e) => setIniPeriodo(e.target.value)}
+                />
 
                 <TextField
-                    required
-                    margin="normal"
-                    id="iniNotas"
-                    label="Cierre Parcial de Notas"
-                    fullWidth
-                    variant="standard"
-                    value={iniNotas}
-                    onChange={(e) => setIniNotas(e.target.value)}
-                  />
+                  required
+                  margin="normal"
+                  id="finPeriodo"
+                  label="Fin del Periodo"
+                  fullWidth
+                  variant="standard"
+                  value={finPeriodo}
+                  onChange={(e) => setFinPeriodo(e.target.value)}
+                />
 
                 <TextField
-                    required
-                    margin="normal"
-                    id="finNotas"
-                    label="Cierre Final de Notas"
-                    fullWidth
-                    variant="standard"
-                    value={finNotas}
-                    onChange={(e) => setFinNotas(e.target.value)}
-                  />
+                  required
+                  margin="normal"
+                  id="iniNotas"
+                  label="Cierre Parcial de Notas"
+                  fullWidth
+                  variant="standard"
+                  value={iniNotas}
+                  onChange={(e) => setIniNotas(e.target.value)}
+                />
+
+                <TextField
+                  required
+                  margin="normal"
+                  id="finNotas"
+                  label="Cierre Final de Notas"
+                  fullWidth
+                  variant="standard"
+                  value={finNotas}
+                  onChange={(e) => setFinNotas(e.target.value)}
+                />
               </Box>
             </DialogContent>
             <DialogActions>
