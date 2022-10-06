@@ -4,8 +4,6 @@ import { Select, Option } from "@material-tailwind/react";
 import { Input } from "@material-tailwind/react";
 import { Button } from "@material-tailwind/react";
 import { useState, useEffect } from "react";
-import DataTable from "react-data-table-component";
-
 import Box from "@mui/material/Box";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 
@@ -14,28 +12,35 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import Stack from "@mui/material/Stack";
-
+import {
+  listarEspecialidades,
+  agregarEspecialidades,
+} from "../../../services/EspecialidaServices";
+import DataTable from "react-data-table-component";
 //GAAAAAAAAA1 CAMBIO
 const NuevaFacultad = () => {
-  const columns: GridColDef[] = [
-    {
-      field: "codigo",
-      headerName: "Código de la especialidad",
-      width: 150,
-      editable: true,
-    },
-    {
-      field: "nombre",
-      headerName: "Nombre de la especialidad",
-      width: 540,
-      editable: true,
-    },
-  ];
+  const [especialidad, setEspecialidad] = useState([]);
 
-  const rows = [
-    { id: 1, codigo: "ES001", nombre: "Ingeniería Informática" },
-    { id: 2, codigo: "ES002", nombre: "Ingeniería Mecatrónica" },
-  ];
+  const showData = async () => {
+    try {
+      const esp = await listarEspecialidades();
+      const data = esp.data;
+      setEspecialidad(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  /*const addData = async () => {
+    try {
+      const resultado = agregarEspecialidades(newEsp);
+    } catch (error) {
+      console.log(error);
+    }
+  };*/
+  useEffect(() => {
+    showData();
+  }, []);
 
   //3. Configuramos las columnas para el data table
   const columnas = [
@@ -48,7 +53,6 @@ const NuevaFacultad = () => {
       selector: (row) => "Ingeniería " + row.nombre,
     },
   ];
-
   return (
     <div name="nuevafacultad" className="h-screen w-full bg-white">
       <div className="flex w-full h-20"></div>
@@ -89,21 +93,22 @@ const NuevaFacultad = () => {
             <IconButton aria-label="modify">
               <EditIcon />
             </IconButton>
-            <IconButton aria-label="add">
-              <AddCircleIcon />
-            </IconButton>
+            <Link to="/nuevocurso">
+              <IconButton aria-label="add">
+                <AddCircleIcon />
+              </IconButton>
+            </Link>
           </Stack>
 
           <Box sx={{ height: 250, width: "100%" }} className="pb-5">
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              pageSize={2}
-              rowsPerPageOptions={[3]}
-              checkboxSelection
-              disableSelectionOnClick
-              experimentalFeatures={{ newEditingApi: true }}
-            />
+            <DataTable
+              columns={columnas}
+              data={especialidad}
+              pagination
+              selectableRows
+              selectableRowsHighlight
+              highlightOnHover
+            ></DataTable>
           </Box>
 
           <div className="grid grid-cols-3 w-full">
