@@ -33,8 +33,6 @@ const NuevaFacultad = () => {
   ];
 
   const rows = [
-    { id: 1, codigo: "ES001", nombre: "Ingeniería Informática" },
-    { id: 2, codigo: "ES002", nombre: "Ingeniería Mecatrónica" },
   ];
 
   //3. Configuramos las columnas para el data table
@@ -89,9 +87,11 @@ const NuevaFacultad = () => {
             <IconButton aria-label="modify">
               <EditIcon />
             </IconButton>
-            <IconButton aria-label="add">
-              <AddCircleIcon />
-            </IconButton>
+            <Link to ="/nuevaespecialidad">
+              <IconButton aria-label="add">
+                <AddCircleIcon />
+              </IconButton>
+            </Link>
           </Stack>
 
           <Box sx={{ height: 250, width: "100%" }} className="pb-5">
@@ -110,12 +110,14 @@ const NuevaFacultad = () => {
             <div> </div>
             <div> </div>
             <div>
-              <Button
-                variant="contained"
-                className="bg-white text-blue-pucp border-b-3 ml-12"
-              >
-                Cancelar
-              </Button>
+              <Link to ="/gestiondefacultades">
+                <Button
+                  variant="contained"
+                  className="bg-white text-blue-pucp border-b-3 ml-12"
+                >
+                  Cancelar
+                </Button>
+              </Link>
               <Button variant="contained" className="bg-blue-pucp ml-5">
                 Guardar
               </Button>

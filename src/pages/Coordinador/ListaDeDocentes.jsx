@@ -95,7 +95,10 @@ const ListaDeDocentes = () => {
           <div> </div>
           <div> </div>
           <div>
-            <Button variant="contained" className="bg-white text-blue-pucp border-b-3 ml-12">Cancelar</Button>
+            <Link to = "/nuevocurso">
+              <Button variant="contained" className="bg-white text-blue-pucp border-b-3 ml-12">Cancelar</Button>
+            </Link>
+            
             <Button variant="contained" className="bg-blue-pucp ml-5">Agregar</Button>
           </div>          
         </div>

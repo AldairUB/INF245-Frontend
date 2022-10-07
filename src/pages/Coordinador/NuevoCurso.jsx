@@ -117,9 +117,12 @@ const NuevoCurso = () => {
             <IconButton aria-label="modify">
               <EditIcon />
             </IconButton>
-            <IconButton aria-label="add">
-              <AddCircleIcon />
-            </IconButton>
+            <Link to ="/listadedocentes">
+              <IconButton aria-label="add">
+                <AddCircleIcon />
+              </IconButton>
+            </Link>
+            
           </Stack>
 
           <Box sx={{ height: 250, width: '100%' }} className="pb-5">
@@ -145,9 +148,11 @@ const NuevoCurso = () => {
             <IconButton aria-label="modify">
               <EditIcon />
             </IconButton>
-            <IconButton aria-label="add">
-              <AddCircleIcon />
-            </IconButton>
+            <Link to ="/listadealumnos">
+              <IconButton aria-label="add">
+                <AddCircleIcon />
+              </IconButton>
+            </Link>
           </Stack>
 
           <Box sx={{ height: 250, width: '100%' }} className="pb-5">
@@ -166,7 +171,9 @@ const NuevoCurso = () => {
             <div> </div>
             <div> </div>
             <div>
-              <Button variant="contained" className="bg-white text-blue-pucp border-b-3 ml-12">Cancelar</Button>
+              <Link to ="nuevaespecialidad">
+                <Button variant="contained" className="bg-white text-blue-pucp border-b-3 ml-12">Cancelar</Button>
+              </Link>
               <Button variant="contained" className="bg-blue-pucp ml-5">Guardar</Button>
             </div>          
           </div>

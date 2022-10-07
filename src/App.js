@@ -37,7 +37,7 @@ function App() {
         <NavHorizontalBar />
         <NavVerticalBar />
         <Routes>
-          <Route path="/" element={<GestionDeSemestres />}>
+          <Route path="/" element={<Home />}>
             {" "}
           </Route>
           <Route path="/home" element={<Home />}>
@@ -66,6 +66,21 @@ function App() {
             {" "}
           </Route>
           <Route path="/nuevafacultad" element={<NuevaFacultad />}>
+            {" "}
+          </Route>
+          <Route path="/nuevaespecialidad" element={<NuevaEspecialidad />}>
+            {" "}
+          </Route>
+
+          <Route path="/nuevocurso" element={<NuevoCurso />}>
+            {" "}
+          </Route>
+
+          <Route path="/listadedocentes" element={<ListaDeDocentes />}>
+            {" "}
+          </Route>
+
+          <Route path="/listadealumnos" element={<ListaDeAlumnos />}>
             {" "}
           </Route>
         </Routes>

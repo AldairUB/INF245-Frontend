@@ -43,8 +43,8 @@ const NuevaEspecialidad = () => {
   ];
   
   const rows = [
-    { id: 1, codigo: 'INF248', nombre: 'Proyecto de Tesis 1', semestre: '2022-2' },
-    { id: 2, codigo: 'INF249', nombre: 'Proyecto de Tesis 2', semestre: '2022-2' },
+   // { id: 1, codigo: 'INF248', nombre: 'Proyecto de Tesis 1', semestre: '2022-2' },
+   // { id: 2, codigo: 'INF249', nombre: 'Proyecto de Tesis 2', semestre: '2022-2' }
   ];
 
   return (
@@ -57,7 +57,7 @@ const NuevaEspecialidad = () => {
       <div className="max-w-screen-lg p-8 mx-auto flex flex-col justify-start w-full h-fit">
         <div className="pb-10 mb-4 grid grid-cols-1">          
             <p className="text-3xl font-semibold inline border-b-4  text-blue-pucp flex-auto border-blue-pucp">
-              Gestión de Especialidades {">"} Nueva Especialidad
+              Gestión de Especialidades {">"}Nueva Facultad{">"}Nueva Especialidad
             </p>
         </div>
 
@@ -105,9 +105,11 @@ const NuevaEspecialidad = () => {
             <IconButton aria-label="modify">
               <EditIcon />
             </IconButton>
-            <IconButton aria-label="add">
-              <AddCircleIcon />
-            </IconButton>
+            <Link to ="/nuevocurso">
+              <IconButton aria-label="add">
+                <AddCircleIcon />
+              </IconButton>
+            </Link>        
           </Stack>
 
           <Box sx={{ height: 250, width: '100%' }} className="pb-5">
@@ -126,8 +128,13 @@ const NuevaEspecialidad = () => {
             <div> </div>
             <div> </div>
             <div>
-              <Button variant="contained" className="bg-white text-blue-pucp border-b-3 ml-12">Cancelar</Button>
-              <Button variant="contained" className="bg-blue-pucp ml-5">Guardar</Button>
+              <Link to ="/nuevafacultad" >
+                <Button variant="contained" className="bg-white text-blue-pucp border-b-3 ml-12">Cancelar</Button>
+              </Link>
+
+              <Link to ="/nuevafacultad" >
+                <Button variant="contained" className="bg-blue-pucp ml-5">Guardar</Button>
+              </Link>
             </div>          
           </div>
           
