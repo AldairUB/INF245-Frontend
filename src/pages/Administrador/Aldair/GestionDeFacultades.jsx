@@ -21,7 +21,10 @@ import {
   TextField,
 } from "@mui/material";
 import { BiTask } from "react-icons/bi";
-import { listarFacultades } from "../../../services/FacultadServices";
+import {
+  listarFacultades,
+  agregarFacultad,
+} from "../../../services/FacultadServices";
 import DataTable from "react-data-table-component";
 const GestionDeFacultades = () => {
   const [nombreFac, setNombreFac] = useState("");
@@ -33,6 +36,13 @@ const GestionDeFacultades = () => {
     useState(""); /*Default: muestra todo copia de users */
   const [filtered, setFiltered] = useState([]);
   const [open, setOpen] = useState(false);
+  const [tipoModal, setTipoModal] = useState("");
+  const [nuevaFacultad, setNuevaFacultad] = useState({
+    nombre: "",
+    decano: "",
+    anhoFundacion: "",
+  });
+
   const showData = async () => {
     try {
       const usuarios = await listarFacultades();
@@ -68,10 +78,30 @@ const GestionDeFacultades = () => {
     });
     setFiltered(result);
   }, [search]);
+
   //AGREGAR FACULTAD
   const modalInsertar = () => {
     setOpen(!open);
   };
+
+  const handleInputChange = async (event) => {
+    console.log();
+    event.persist();
+    await setNuevaFacultad({
+      ...nuevaFacultad,
+      [event.target.name]: event.target.value,
+    }).catch((error) => {
+      console.log(error.message);
+    });
+    console.log(nuevaFacultad);
+  };
+
+  const addFacultad = () => {
+    agregarFacultad(nuevaFacultad);
+    showData();
+    modalInsertar();
+  };
+
   return (
     <div name="gestiondefacultades" className="h-screen w-full bg-white">
       <div className="flex w-full h-20"></div>
@@ -104,15 +134,16 @@ const GestionDeFacultades = () => {
             <IconButton aria-label="modify">
               <EditIcon />
             </IconButton>
-            <Link
-              to="/nuevafacultad"
-              className="flex justify-between items-center w-full text-white"
-              rel="noreferrer"
+
+            <IconButton
+              aria-label="add"
+              onClick={() => {
+                setTipoModal("insertar");
+                modalInsertar();
+              }}
             >
-              <IconButton aria-label="add">
-                <AddCircleIcon />
-              </IconButton>
-            </Link>
+              <AddCircleIcon />
+            </IconButton>
           </Stack>
           |
         </div>
@@ -151,28 +182,26 @@ const GestionDeFacultades = () => {
                   alignItems: "flex-start",
                 }}
               >
-                <TextField
-                  required
-                  margin="normal"
-                  id="name"
-                  label="Nombre de la facultad"
+                <input
+                  className="form"
                   type="text"
-                  fullWidth
-                  variant="standard"
-                  value={nombreFac}
-                  onChange={(e) => setNombreFac(e.target.value)}
+                  name="nombre"
+                  id="id"
+                  onChange={handleInputChange}
+                  value={nuevaFacultad.nombre}
                 />
 
                 <TextField
                   required
                   margin="normal"
-                  id="decano"
+                  id="iddecano"
                   label="Decano"
                   type="text"
                   fullWidth
                   variant="standard"
-                  value={decano}
-                  onChange={(e) => setDecano(e.target.value.toLowerCase())}
+                  name="decano"
+                  onChange={handleInputChange}
+                  value={nuevaFacultad ? nuevaFacultad.decano : ""}
                 />
 
                 <Box
@@ -185,12 +214,13 @@ const GestionDeFacultades = () => {
                   <TextField
                     required
                     margin="normal"
-                    id="anho"
+                    id="idanho"
                     label="Año de Fundación"
                     fullWidth
                     variant="standard"
-                    value={anho}
-                    onChange={(e) => setAnho(e.target.value)}
+                    name="anhoFundacion"
+                    onChange={handleInputChange}
+                    value={nuevaFacultad ? nuevaFacultad.anhoFundacion : ""}
                   />
                 </Box>
               </Box>
@@ -198,6 +228,9 @@ const GestionDeFacultades = () => {
             <DialogActions>
               <Button variant="contained" onClick={() => modalInsertar()}>
                 Cancelar
+              </Button>
+              <Button variant="contained" onClick={() => addFacultad()}>
+                Guardar
               </Button>
             </DialogActions>
           </Dialog>

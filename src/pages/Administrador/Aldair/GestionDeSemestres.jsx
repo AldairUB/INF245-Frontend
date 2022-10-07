@@ -10,7 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import Stack from "@mui/material/Stack";
 import DataTable from "react-data-table-component";
-import { listarSemestres } from "../../../services/SemestreServices";
+import { agregarSemestre, listarSemestres } from "../../../services/SemestreServices";
 import {
   Card,
   CardHeader,
@@ -34,10 +34,23 @@ const GestionDeSemestres = () => {
   const [periodo, setPeriodo] = useState("");
   const [iniPeriodo, setIniPeriodo] = useState("");
   const [finPeriodo, setFinPeriodo] = useState("");
-  const [iniNotas, setIniNotas]=useState("");
-  const [finNotas, setFinNotas]=useState("");
+  const [iniNotas, setIniNotas] = useState("");
+  const [finNotas, setFinNotas] = useState("");
   const [users, setUsers] = useState([]);
   const [open, setOpen] = useState(false);
+
+  const [tipoModal, setTipoModal] = useState("");
+  const [insertado, setInsertado] = useState(false);
+  const [nuevoSemestre, setNuevoSemestre] = useState({
+
+    anhoAcademico: "",
+    periodo: "",
+    fechaInicio: "",
+    fechaFin: "",
+    fechaCierreNotasParcial: "",
+    fechaCierreNotasFinal: "",
+  });
+
   const showData = async () => {
     try {
       const usuarios = await listarSemestres();
@@ -51,7 +64,8 @@ const GestionDeSemestres = () => {
 
   useEffect(() => {
     showData();
-  }, []);
+    setInsertado(false);
+  }, [insertado]);
 
   const columnas = [
     {
@@ -67,9 +81,30 @@ const GestionDeSemestres = () => {
       selector: (row) => row.fechaFin,
     },
   ];
+
   const modalInsertar = () => {
     setOpen(!open);
   };
+
+  const handleInputChange = async (event) => {
+    console.log();
+    event.persist();
+    await setNuevoSemestre({
+      ...nuevoSemestre,
+      [event.target.name]: event.target.value,
+    }).catch((error) => {
+      console.log(error.message);
+    });
+    console.log(nuevoSemestre);
+  };
+
+  const addSemestre = () => {
+    agregarSemestre(nuevoSemestre);
+    showData();
+    modalInsertar();
+    setInsertado(true);
+  };
+
   return (
     <div name="gestiondesemestres" className="h-screen w-full bg-white">
       <div className="flex w-full h-20"></div>
@@ -99,7 +134,12 @@ const GestionDeSemestres = () => {
             <IconButton aria-label="modify">
               <EditIcon />
             </IconButton>
-            <IconButton aria-label="add" onClick={()=>modalInsertar()}>
+            <IconButton aria-label="add"
+              onClick={() => {
+                setTipoModal("insertar");
+                modalInsertar();
+              }}
+            >
               <AddCircleIcon />
             </IconButton>
           </Stack>
@@ -108,18 +148,20 @@ const GestionDeSemestres = () => {
           <div></div>
 
           <Box sx={{ height: 350, width: "100%" }} className="pb-5">
-            <DataTable
-              columns={columnas}
-              data={users}
-              pagination
-              selectableRows
-              selectableRowsHighlight
-              highlightOnHover
-            ></DataTable>
+            <div className="pb-6 w-full" style={{height: 350, width: "100%"}}>
+              <DataTable
+                columns={columnas}
+                data={users}
+                pagination
+                selectableRows
+                selectableRowsHighlight
+                highlightOnHover
+              ></DataTable>
+            </div>
           </Box>
           {/*aca comienza el form*/}
 
-            <Dialog open={open}>
+          <Dialog open={open}>
             <DialogTitle>Formulario</DialogTitle>
             <Divider />
             <DialogContent>
@@ -137,78 +179,89 @@ const GestionDeSemestres = () => {
                   alignItems: "flex-start",
                 }}
               >
+
+
                 <TextField
                   required
                   margin="normal"
+                  name="anhoAcademico"
                   id="anio"
                   label="Año académico"
                   type="text"
                   fullWidth
                   variant="standard"
-                  value={anio}
-                  onChange={(e) => setAnioAcademico(e.target.value)}
+                  onChange={handleInputChange}
+                  value={nuevoSemestre ? nuevoSemestre.anhoAcademico: ""}
                 />
 
                 <TextField
                   required
                   margin="normal"
-                  id="periodo"
+                  name="periodo"
+                  id="idPeriodo"
                   label="Periodo"
                   type="text"
                   fullWidth
                   variant="standard"
-                  value={periodo}
-                  onChange={(e) => setPeriodo(e.target.value)}
+                  onChange={handleInputChange}
+                  value={nuevoSemestre ? nuevoSemestre.periodo: ""}
                 />
 
-                  <TextField
-                    required
-                    margin="normal"
-                    id="iniPeriodo"
-                    label="Inicio del Periodo"
-                    fullWidth
-                    variant="standard"
-                    value={iniPeriodo}
-                    onChange={(e) => setIniPeriodo(e.target.value)}
-                  />
-                
                 <TextField
-                    required
-                    margin="normal"
-                    id="finPeriodo"
-                    label="Fin del Periodo"
-                    fullWidth
-                    variant="standard"
-                    value={finPeriodo}
-                    onChange={(e) => setFinPeriodo(e.target.value)}
-                  />
+                  required
+                  margin="normal"
+                  name="fechaInicio"
+                  id="idIniPeriodo"
+                  label="Inicio del Periodo"
+                  fullWidth
+                  variant="standard"
+                  onChange={handleInputChange}
+                  value={nuevoSemestre ? nuevoSemestre.fechaInicio: ""}
+                />
 
                 <TextField
-                    required
-                    margin="normal"
-                    id="iniNotas"
-                    label="Cierre Parcial de Notas"
-                    fullWidth
-                    variant="standard"
-                    value={iniNotas}
-                    onChange={(e) => setIniNotas(e.target.value)}
-                  />
+                  required
+                  margin="normal"
+                  name="fechaFin"
+                  id="idFinPeriodo"
+                  label="Fin del Periodo"
+                  fullWidth
+                  variant="standard"
+                  onChange={handleInputChange}
+                  value={nuevoSemestre ? nuevoSemestre.fechaFin: ""}
+                />
 
                 <TextField
-                    required
-                    margin="normal"
-                    id="finNotas"
-                    label="Cierre Final de Notas"
-                    fullWidth
-                    variant="standard"
-                    value={finNotas}
-                    onChange={(e) => setFinNotas(e.target.value)}
-                  />
+                  required
+                  margin="normal"
+                  name="fechaCierreNotasParcial"
+                  id="idIniNotas"
+                  label="Cierre Parcial de Notas"
+                  fullWidth
+                  variant="standard"
+                  onChange={handleInputChange}
+                  value={nuevoSemestre ? nuevoSemestre.fechaCierreNotasParcial: ""}
+                />
+
+                <TextField
+                  required
+                  margin="normal"
+                  name="fechaCierreNotasFinal"
+                  id="idFinNotas"
+                  label="Cierre Final de Notas"
+                  fullWidth
+                  variant="standard"
+                  onChange={handleInputChange}
+                  value={nuevoSemestre ? nuevoSemestre.fechaCierreNotasFinal: ""}
+                />
               </Box>
             </DialogContent>
             <DialogActions>
               <Button variant="contained" onClick={() => modalInsertar()}>
                 Cancelar
+              </Button>
+              <Button variant="contained" onClick={() => addSemestre()}>
+                Guardar
               </Button>
             </DialogActions>
           </Dialog>
