@@ -44,7 +44,6 @@ function App() {
         <NavHorizontalBar />
         <NavVerticalBar />
         <Routes>
-<<<<<<< HEAD
           <Route path="/" element={<Inicio />}>{" "}</Route>
           <Route path="/home" element={<Home />}>{" "}</Route>
           <Route path="/gestiondefacultades" element={<GestionDeFacultades />}>{" "}</Route>
@@ -60,54 +59,6 @@ function App() {
           <Route path="/gestionAlumnosTareas" element={<GestionAlumnosTareas />}></Route>
           <Route path="/listaCambioAsesor" element={<ListaCambioAsesor />}></Route>
           <Route path="/gestionTareas" element={<GestionDeTareas />}></Route>
-=======
-          <Route path="/" element={<Home />}>
-            {" "}
-          </Route>
-          <Route path="/home" element={<Home />}>
-            {" "}
-          </Route>
-          <Route path="/gestiondefacultades" element={<GestionDeFacultades />}>
-            {" "}
-          </Route>
-          <Route
-            path="/gestiondesemestres"
-            element={<GestionDeSemestres />}
-          ></Route>
-          <Route path="/gestiondeusuarios" element={<GestionDeUsuarios />}>
-            {" "}
-          </Route>
-          <Route path="/nuevaespecialidad" element={<NuevaEspecialidad />}>
-            {" "}
-          </Route>
-          <Route
-            path="/pendientesporcorregir"
-            element={<PendientesPorCorregir />}
-          >
-            {" "}
-          </Route>
-          <Route path="/gestionentrega" element={<GestionEntrega />}>
-            {" "}
-          </Route>
-          <Route path="/nuevafacultad" element={<NuevaFacultad />}>
-            {" "}
-          </Route>
-          <Route path="/nuevaespecialidad" element={<NuevaEspecialidad />}>
-            {" "}
-          </Route>
-
-          <Route path="/nuevocurso" element={<NuevoCurso />}>
-            {" "}
-          </Route>
-
-          <Route path="/listadedocentes" element={<ListaDeDocentes />}>
-            {" "}
-          </Route>
-
-          <Route path="/listadealumnos" element={<ListaDeAlumnos />}>
-            {" "}
-          </Route>
->>>>>>> fff32f8cdae9f275f7e3d9ae79069d772645746d
         </Routes>
       </Router>
     </div>

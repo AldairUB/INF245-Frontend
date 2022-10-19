@@ -130,36 +130,6 @@ const ListaDeAlumnos = () => {
 
 
       </div>
-<<<<<<< HEAD
-=======
-      <div>
-        <div></div>
-
-        <Box sx={{ height: 350, width: '100%' }} className="pb-5">
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={4}
-            rowsPerPageOptions={[4]}
-            checkboxSelection
-            disableSelectionOnClick
-            experimentalFeatures={{ newEditingApi: true }}
-          />
-        </Box>
-
-      </div>
-
-      <div className="grid grid-cols-3 w-full">
-          <div> </div>
-          <div> </div>
-          <div>
-            <Link to = "/nuevocurso">
-            <Button variant="contained" className="bg-white text-blue-pucp border-b-3 ml-12">Cancelar</Button>
-            </Link>
-            <Button variant="contained" className="bg-blue-pucp ml-5">Agregar</Button>
-          </div>          
-        </div>
->>>>>>> fff32f8cdae9f275f7e3d9ae79069d772645746d
     </div>
   );
 };
