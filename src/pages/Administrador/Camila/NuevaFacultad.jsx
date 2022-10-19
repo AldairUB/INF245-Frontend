@@ -20,6 +20,23 @@ import { agregarFacultad } from "../../../services/FacultadServices";
 import DataTable from "react-data-table-component";
 //GAAAAAAAAA1 CAMBIO
 const NuevaFacultad = () => {
+  const columns: GridColDef[] = [
+    {
+      field: "codigo",
+      headerName: "Código de la especialidad",
+      width: 150,
+      editable: true,
+    },
+    {
+      field: "nombre",
+      headerName: "Nombre de la especialidad",
+      width: 540,
+      editable: true,
+    },
+  ];
+
+  const rows = [
+  ];
   const [especialidad, setEspecialidad] = useState([]);
   const [nuevaEspecialidad, setNuevaEspecialidad] = useState({
     nombre: "",
@@ -129,7 +146,7 @@ const NuevaFacultad = () => {
             <IconButton aria-label="modify">
               <EditIcon />
             </IconButton>
-            <Link to="/nuevocurso">
+            <Link to ="/nuevaespecialidad">
               <IconButton aria-label="add">
                 <AddCircleIcon />
               </IconButton>
@@ -151,12 +168,14 @@ const NuevaFacultad = () => {
             <div> </div>
             <div> </div>
             <div>
-              <Button
-                variant="contained"
-                className="bg-white text-blue-pucp border-b-3 ml-12"
-              >
-                Cancelar
-              </Button>
+              <Link to ="/gestiondefacultades">
+                <Button
+                  variant="contained"
+                  className="bg-white text-blue-pucp border-b-3 ml-12"          
+                >
+                  Cancelar
+                </Button>
+              </Link>
               <Button
                 variant="contained"
                 className="bg-blue-pucp ml-5"
