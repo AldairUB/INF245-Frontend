@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.28761b60.css",
+    "main.js": "/static/js/main.c8fd40cd.js",
+    "static/media/studentXteacher.png": "/static/media/studentXteacher.e63410c484a49e1e2732.png",
+    "static/media/pucp.png": "/static/media/pucp.0216b7046630ab14791d.png",
+    "index.html": "/index.html",
+    "main.28761b60.css.map": "/static/css/main.28761b60.css.map",
+    "main.c8fd40cd.js.map": "/static/js/main.c8fd40cd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.28761b60.css",
+    "static/js/main.c8fd40cd.js"
+  ]
+}
