@@ -4,32 +4,32 @@ import {getLoggedInUserDetails} from "../../src/services/LoginServices";
 import { Link,useNavigate } from "react-router-dom";
 
 const Inicio = () => {
-const [ingreso, setIngreso] = useState(false);
-const [user,setUser] = useState(null);
-let navigate = useNavigate();
+    const [ingreso, setIngreso] = useState(false);
+    const [user,setUser] = useState(null);
+    let navigate = useNavigate();
 
-const googleAuthorization=()=>{
-    window.open('http://localhost:8081/oauth2/authorization/google','_self')
-    const usuario = fetch('http://localhost:8081/api/v1/usuario/auth/info')
-    .then((response) => response.json())
-    .then((data) => console.log(data));
-    const data = usuario.data;
-    console.log(data);
-    setUser(data);
-    navigate("/home",{state:data});
-}
-
-const showData = async () => {
-    try {
-      const usuario = await getLoggedInUserDetails();
-      const data = usuario.data;
-      console.log(data);
-      if(data.lenght > 0){
-        setIngreso(true);
-      }
-    } catch (error) {
-      console.log(error);
+    const googleAuthorization=()=>{
+        window.open('http://localhost:8081/oauth2/authorization/google','_self')
+        const usuario = fetch('http://localhost:8081/api/v1/usuario/auth/info')
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+        const data = usuario.data;
+        console.log(data);
+        setUser(data);
+        {navigate("/home",{state:data})};
     }
+
+    const showData = async () => {
+        try {
+          const usuario = await getLoggedInUserDetails();
+          const data = usuario.data;
+          console.log(data);
+          if(data.lenght > 0){
+            setIngreso(true);
+          }
+        } catch (error) {
+          console.log(error);
+        }
 };
   return (
     <div name="inicio" className="h-screen w-full bg-white">

@@ -1,5 +1,5 @@
 import React from "react";
-import IvanCordova from "../../../assets/alumno.png";
+import IvanCordova from "../../../assets/alumno.jpg";
 import CesarAguilera from "../../../assets/asesor.png";
 import { Link } from "react-router-dom";
 import { Select, Option } from "@material-tailwind/react";
