@@ -1,13 +1,7 @@
 import React from "react";
-import IvanCordova from "../../../assets/alumno.png";
-import CesarAguilera from "../../../assets/asesor.png";
 import { Link } from "react-router-dom";
-import { Select, Option } from "@material-tailwind/react";
 import { Input } from "@material-tailwind/react";
 import { Button } from "@material-tailwind/react";
-import { MdEmail } from "react-icons/md";
-import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
 
 import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 
