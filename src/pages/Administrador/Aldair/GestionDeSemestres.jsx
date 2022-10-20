@@ -165,10 +165,8 @@ const GestionDeSemestres = () => {
             <DialogTitle>Formulario</DialogTitle>
             <Divider />
             <DialogContent>
-              <DialogContentText>
-                <p ml="10px" mr="10px">
+              <DialogContentText ml="10px" mr="10px">
                   Llene los siguientes campos
-                </p>
               </DialogContentText>
               <Box
                 sx={{

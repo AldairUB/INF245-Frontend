@@ -24,12 +24,19 @@ import PendientesPorCorregir from "./pages/PendientesPorCorregir";
 import GestionEntrega from "./pages/GestionEntrega";
 import PantalladeCursos from "./pages/Coordinador/PantalladeCurso";
 import NuevoCurso from "./pages/Coordinador/NuevoCurso";
+
 import ListaDeAlumnos from "./pages/Coordinador/ListaDeAlumnos";
 import ListaDeDocentes from "./pages/Coordinador/ListaDeDocentes";
 import ReporteDeAlumnos from "./pages/Coordinador/ReporteDeAlumnos";
 import ReporteDeSemestres from "./pages/Coordinador/ReporteDeSemestres";
 import ReporteDeEntregables from "./pages/Coordinador/ReporteDeEntregables";
 import { HashRouter } from "react-router-dom";
+import GestionAlumnosDetalles from "./pages/Coordinador/Ivan/GestionAlumnosDetalle";
+import GestionAlumnosTareas from "./pages/Coordinador/Ivan/GestionAlumnosTareas";
+import ListaCambioAsesor from "./pages/Coordinador/Ivan/ListaCambioAsesor";
+
+import GestionDeTareas from "./pages/Coordinador/GestionDeTareas";
+
 function App() {
   return (
     <div className="App">
@@ -81,6 +88,21 @@ function App() {
           <Route path="/listadealumnos" element={<ListaDeAlumnos />}>
             {" "}
           </Route>
+          <Route path="/" element={<Inicio />}>{" "}</Route>
+          <Route path="/home" element={<Home />}>{" "}</Route>
+          <Route path="/gestiondefacultades" element={<GestionDeFacultades />}>{" "}</Route>
+          <Route path="/gestiondesemestres" element={<GestionDeSemestres />}></Route>
+          <Route path="/gestiondeusuarios" element={<GestionDeUsuarios />}>{" "}</Route>
+          <Route path="/nuevaespecialidad" element={<NuevaEspecialidad />}>{" "}</Route>
+          <Route path="/pendientesporcorregir" element={<PendientesPorCorregir />}>{" "}</Route>
+          <Route path="/gestionentrega" element={<GestionEntrega />}>{" "}</Route>
+          <Route path="/nuevafacultad" element={<NuevaFacultad />}>{" "}</Route>
+          <Route path="/nuevoUsuario" element={<NuevoUsuario />}>{" "}</Route>
+          <Route path="/listaDeAlumnos" element={<ListaDeAlumnos />}></Route>
+          <Route path="/gestionAlumnosDetalle" element={<GestionAlumnosDetalles />}></Route>
+          <Route path="/gestionAlumnosTareas" element={<GestionAlumnosTareas />}></Route>
+          <Route path="/listaCambioAsesor" element={<ListaCambioAsesor />}></Route>
+          <Route path="/gestionTareas" element={<GestionDeTareas />}></Route>
         </Routes>
       </HashRouter>
     </div>

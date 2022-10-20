@@ -229,6 +229,7 @@ const GestionDeFacultades = () => {
   const [filtered, setFiltered] = useState([]);
   const [open, setOpen] = useState(false);
   const [tipoModal, setTipoModal] = useState("");
+  const [inserto, setInserto] = useState(false);
   const [nuevaFacultad, setNuevaFacultad] = useState({
     nombre: "",
     decano: "",
@@ -259,7 +260,8 @@ const GestionDeFacultades = () => {
 
   useEffect(() => {
     showData();
-  }, []);
+    setInserto(false);
+  }, [inserto]);
 
   /*hooks para manejo tabla **/
   const handleRequestSort = (event, property) => {
@@ -345,6 +347,7 @@ const GestionDeFacultades = () => {
     agregarFacultad(nuevaFacultad);
     showData();
     modalInsertar();
+    setInserto(true);
   };
 
   return (
