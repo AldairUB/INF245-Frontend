@@ -29,18 +29,18 @@ import ListaDeDocentes from "./pages/Coordinador/ListaDeDocentes";
 import ReporteDeAlumnos from "./pages/Coordinador/ReporteDeAlumnos";
 import ReporteDeSemestres from "./pages/Coordinador/ReporteDeSemestres";
 import ReporteDeEntregables from "./pages/Coordinador/ReporteDeEntregables";
-
+import { HashRouter } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <Router>
+      <HashRouter>
         <NavHorizontalBar />
         <NavVerticalBar />
         <Routes>
-          <Route path="/" element={<Home />}>
+          <Route path="/" element={<Inicio/>}>
             {" "}
           </Route>
-          <Route path="/home" element={<Home />}>
+          <Route path="/home" element={<Home/>}>
             {" "}
           </Route>
           <Route path="/gestiondefacultades" element={<GestionDeFacultades />}>
@@ -56,9 +56,7 @@ function App() {
           <Route path="/nuevaespecialidad" element={<NuevaEspecialidad />}>
             {" "}
           </Route>
-          <Route
-            path="/pendientesporcorregir"
-            element={<PendientesPorCorregir />}
+          <Route path="/pendientesporcorregir" element={<PendientesPorCorregir />}
           >
             {" "}
           </Route>
@@ -84,7 +82,7 @@ function App() {
             {" "}
           </Route>
         </Routes>
-      </Router>
+      </HashRouter>
     </div>
   );
 }

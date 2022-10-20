@@ -1,7 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import StudentTeacherImage from "../assets/studentXteacher.png";
-import { Link } from "react-router-dom";
+import {getLoggedInUserDetails} from "../../src/services/LoginServices";
+import { Link,useNavigate } from "react-router-dom";
+
 const Inicio = () => {
+const [ingreso, setIngreso] = useState(false);
+const [user,setUser] = useState(null);
+let navigate = useNavigate();
+
+const googleAuthorization=()=>{
+    window.open('http://localhost:8081/oauth2/authorization/google','_self')
+    const usuario = fetch('http://localhost:8081/api/v1/usuario/auth/info')
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+    const data = usuario.data;
+    console.log(data);
+    setUser(data);
+    navigate("/home",{state:data});
+}
+
+const showData = async () => {
+    try {
+      const usuario = await getLoggedInUserDetails();
+      const data = usuario.data;
+      console.log(data);
+      if(data.lenght > 0){
+        setIngreso(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+};
   return (
     <div name="inicio" className="h-screen w-full bg-white">
       <div class="bg-blue-pucp absolute top-0 left-0 bg-gradient-to-b from-blue-pucp via-blue-pucp to-white bottom-0 leading-5 h-full w-full overflow-hidden"></div>
@@ -77,11 +106,12 @@ const Inicio = () => {
                   <span class="text-gray-300 font-normal">or</span>
                   <span class="h-px w-16 bg-gray-100"></span>
                 </div>
-                <div class="flex justify-center gap-5 w-full ">
+                <div class="flex justify-center gap-5 w-full " >
                   
                     <button
                       type="submit"
                       class="w-full flex items-center justify-center mb-6 md:mb-0 border border-gray-300 hover:border-gray-900 hover:bg-gray-900 text-sm text-gray-500 p-3  rounded-lg tracking-wide font-medium  cursor-pointer transition ease-in duration-500"
+                      onClick={googleAuthorization}
                     >
                       <svg
                         class="w-4 mr-2"
@@ -106,7 +136,7 @@ const Inicio = () => {
                         />
                       </svg>
 
-                      <span>Google</span>
+                      <span>Iniciar con Google</span>
                     </button>
                   
                 </div>
