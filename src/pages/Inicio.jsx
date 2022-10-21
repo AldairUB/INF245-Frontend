@@ -1,39 +1,34 @@
 import React, { useState, useEffect } from "react";
 import StudentTeacherImage from "../assets/studentXteacher.png";
-import {getLoggedInUserDetails} from "../../src/services/LoginServices";
 import { Link,useNavigate } from "react-router-dom";
 
 const Inicio = () => {
-    const [ingreso, setIngreso] = useState(false);
-    const [user,setUser] = useState(null);
+    const [userInfo, setUserInfo] = useState(null);
     let navigate = useNavigate();
 
+    fetch('/api/v1/usuario/auth/info')
+        .then((response) => {
+            if (response.status === 200) {
+                return response.json();
+            }
+            throw new Error("fail");
+        })
+        .then((data) => setUserInfo(data))
+        .catch(error => {const mute = error});
+
     const googleAuthorization=()=>{
-        window.open('http://localhost:8081/oauth2/authorization/google','_self')
-        const usuario = fetch('http://localhost:8081/api/v1/usuario/auth/info')
-        .then((response) => response.json())
-        .then((data) => console.log(data));
-        const data = usuario.data;
-        console.log(data);
-        setUser(data);
-        {navigate("/home",{state:data})};
+        window.open('/oauth2/authorization/google','_self')
     }
 
-    const showData = async () => {
-        try {
-          const usuario = await getLoggedInUserDetails();
-          const data = usuario.data;
-          console.log(data);
-          if(data.lenght > 0){
-            setIngreso(true);
-          }
-        } catch (error) {
-          console.log(error);
+    useEffect(() => {
+        if (userInfo) {
+            navigate("/home", {state: userInfo});
         }
-};
+    }, [userInfo]);
+
   return (
     <div name="inicio" className="h-screen w-full bg-white">
-      <div class="bg-blue-pucp absolute top-0 left-0 bg-gradient-to-b from-blue-pucp via-blue-pucp to-white bottom-0 leading-5 h-full w-full overflow-hidden"></div>
+      <div className="bg-blue-pucp absolute top-0 left-0 bg-gradient-to-b from-blue-pucp via-blue-pucp to-white bottom-0 leading-5 h-full w-full overflow-hidden"></div>
 
       <div class="relative   min-h-screen  sm:flex sm:flex-row  justify-center bg-transparent rounded-3xl shadow-xl">
         <div class="flex-col flex  self-center lg:px-14 sm:max-w-4xl xl:max-w-md  z-10">
